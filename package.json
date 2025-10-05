@@ -1,6 +1,7 @@
 {
 	"name": "myslennya-tasks",
 	"version": "0.1.0",
+	"author": "Mykola Dzoban",
 	"description": "Flyout task panel",
 	"main": "main.js",
 	"type": "module",
