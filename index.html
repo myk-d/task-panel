@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Task Panel</title>
+		<meta
+			http-equiv="Content-Security-Policy"
+			content="default-src 'self';
+                 img-src 'self' data:;
+                 style-src 'self' 'unsafe-inline';
+                 script-src 'self';" />
+
+		<link rel="stylesheet" href="./index.css" />
+	</head>
+	<body>
+		<div class="panel">
+			<div class="toolbar">
+				<div class="filters">
+					<button data-filter="today">Today</button>
+					<button data-filter="overdue">Overdue</button>
+					<button data-filter="next">Next</button>
+					<button data-filter="all">All</button>
+				</div>
+				<div class="switch">
+					<input type="checkbox" id="autostartToggle" />
+					<label for="autostartToggle">Autostart</label>
+				</div>
+			</div>
+
+			<!-- Project select + manage -->
+			<div class="row">
+				<select id="projectSelect" style="max-width: 240px">
+					<option value="">(без проєкту)</option>
+				</select>
+				<button id="manageProjects">Проєкти…</button>
+			</div>
+			
+			<!-- Project manager panel -->
+			<div class="pm-wrap" id="pmWrap">
+				<div class="pm-list" id="pmList"></div>
+				<div class="row">
+					<input id="pmNew" type="text" placeholder="Новий проєкт…" />
+					<button id="pmAdd">Додати</button>
+				</div>
+				<div class="row" style="justify-content: flex-end">
+					<button id="pmClose">Закрити</button>
+				</div>
+			</div>
+			
+			<div class="row">
+				<input id="title" type="text" placeholder="Нова задача… напр.: Pay invoice +urgent (proj override: proj:work)" />
+			</div>
+
+			<div class="row">
+				<input id="due" type="datetime-local" style="max-width: 220px" />
+				<select id="remind" style="max-width: 160px">
+					<option value="0">без нагадування</option>
+					<option value="5">за 5 хв</option>
+					<option value="10" selected>за 10 хв</option>
+					<option value="30">за 30 хв</option>
+					<option value="60">за 1 год</option>
+				</select>
+				<button id="add" class="primary">Додати</button>
+			</div>
+
+			<div class="row">
+				<input id="filter" type="text" placeholder="Фільтр: proj:work +urgent due:today" />
+				<button id="apply">Фільтр</button>
+			</div>
+
+			<ul id="list"></ul>
+		</div>
+
+		<script src="./renderer.js"></script>
+	</body>
+</html>
