@@ -27,48 +27,94 @@
 				</div>
 			</div>
 
-			<!-- Project select + manage -->
-			<div class="row">
-				<select id="projectSelect" style="max-width: 240px">
-					<option value="">(без проєкту)</option>
-				</select>
-				<button id="manageProjects">Проєкти…</button>
-			</div>
-			
-			<!-- Project manager panel -->
-			<div class="pm-wrap" id="pmWrap">
-				<div class="pm-list" id="pmList"></div>
-				<div class="row">
-					<input id="pmNew" type="text" placeholder="Новий проєкт…" />
-					<button id="pmAdd">Додати</button>
-				</div>
-				<div class="row" style="justify-content: flex-end">
-					<button id="pmClose">Закрити</button>
-				</div>
-			</div>
-			
-			<div class="row">
-				<input id="title" type="text" placeholder="Нова задача… напр.: Pay invoice +urgent (proj override: proj:work)" />
-			</div>
-
-			<div class="row">
-				<input id="due" type="datetime-local" style="max-width: 220px" />
-				<select id="remind" style="max-width: 160px">
-					<option value="0">без нагадування</option>
-					<option value="5">за 5 хв</option>
-					<option value="10" selected>за 10 хв</option>
-					<option value="30">за 30 хв</option>
-					<option value="60">за 1 год</option>
-				</select>
-				<button id="add" class="primary">Додати</button>
-			</div>
-
 			<div class="row">
 				<input id="filter" type="text" placeholder="Фільтр: proj:work +urgent due:today" />
-				<button id="apply">Фільтр</button>
+				<button id="apply" class="btn">Фільтр</button>
 			</div>
 
 			<ul id="list"></ul>
+
+			<button id="addFab" class="fab" title="Нова задача">+</button>
+
+			<button id="themeBtn" class="fab fab-secondary" title="Змінити тему">🌙</button>
+
+			<button id="btnExport" class="fab fab-secondary fab-export" title="Експорт JSON">
+				<svg class="svg-colors" width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+					<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+					<g id="SVGRepo_iconCarrier">
+						<path
+							fill-rule="evenodd"
+							clip-rule="evenodd"
+							d="M8.84467 7.90533C9.13756 8.19822 9.61244 8.19822 9.90533 7.90533L11.625 6.18566L11.625 14.375C11.625 14.7892 11.9608 15.125 12.375 15.125C12.7892 15.125 13.125 14.7892 13.125 14.375V6.18566L14.8447 7.90533C15.1376 8.19822 15.6124 8.19822 15.9053 7.90533C16.1982 7.61244 16.1982 7.13756 15.9053 6.84467L12.9053 3.84467C12.6124 3.55178 12.1376 3.55178 11.8447 3.84467L8.84467 6.84467C8.55178 7.13756 8.55178 7.61244 8.84467 7.90533Z"></path>
+						<path
+							d="M12.375 20.375C16.7933 20.375 20.375 16.7933 20.375 12.375L16.625 12.375C15.6822 12.375 15.2108 12.375 14.9179 12.6679C14.625 12.9608 14.625 13.4322 14.625 14.375C14.625 15.6176 13.6176 16.625 12.375 16.625C11.1324 16.625 10.125 15.6176 10.125 14.375C10.125 13.4322 10.125 12.9608 9.83211 12.6679C9.53921 12.375 9.06781 12.375 8.125 12.375H4.375C4.375 16.7933 7.95672 20.375 12.375 20.375Z"></path>
+					</g>
+				</svg>
+			</button>
+
+			<button id="btnImport" class="fab fab-secondary fab-import" title="Імпорт JSON">
+				<svg class="svg-colors" width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+					<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+					<g id="SVGRepo_iconCarrier">
+						<path
+							fill-rule="evenodd"
+							clip-rule="evenodd"
+							d="M15.5303 10.4697C15.2374 10.1768 14.7626 10.1768 14.4697 10.4697L12.75 12.1893V4C12.75 3.58579 12.4142 3.25 12 3.25C11.5858 3.25 11.25 3.58579 11.25 4L11.25 12.1893L9.53033 10.4697C9.23744 10.1768 8.76256 10.1768 8.46967 10.4697C8.17678 10.7626 8.17678 11.2374 8.46967 11.5303L11.4697 14.5303C11.7626 14.8232 12.2374 14.8232 12.5303 14.5303L15.5303 11.5303C15.8232 11.2374 15.8232 10.7626 15.5303 10.4697Z"></path>
+						<path
+							d="M17.7476 12C17.2996 12 16.9077 12.2742 16.591 12.591L13.591 15.591C12.7123 16.4697 11.2877 16.4697 10.409 15.591L7.40901 12.591C7.09226 12.2742 6.70041 12 6.25245 12H4C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12H17.7476Z"></path>
+					</g>
+				</svg>
+			</button>
+
+			<div id="addModal" class="modal-backdrop" role="dialog" aria-hidden="true">
+				<div class="modal" role="document">
+					<h3>Нова задача</h3>
+
+					<div class="grid-1">
+						<input id="afTitle" type="text" placeholder="Назва задачі *" autofocus />
+					</div>
+
+					<div class="grid-2">
+						<select id="afProjectSelect">
+							<option value="">(без проєкту)</option>
+						</select>
+						<button id="manageProjects" class="btn" type="button">Проєкти…</button>
+					</div>
+
+					<div class="grid-1">
+						<input id="afTags" type="text" placeholder="Теги (через пробіл або +tag)" />
+					</div>
+
+					<div class="pm-wrap" id="pmWrap">
+						<div class="pm-list" id="pmList"></div>
+						<div class="grid-2">
+							<input id="pmNew" type="text" placeholder="Новий проєкт…" />
+							<button id="pmAdd" class="btn">Додати</button>
+						</div>
+						<div style="display: flex; justify-content: flex-end">
+							<button id="pmClose" class="btn">Закрити</button>
+						</div>
+					</div>
+
+					<div class="grid-2">
+						<input id="afDue" type="datetime-local" />
+						<select id="afRemind">
+							<option value="0">без нагадування</option>
+							<option value="5">за 5 хв</option>
+							<option value="10" selected>за 10 хв</option>
+							<option value="30">за 30 хв</option>
+							<option value="60">за 1 год</option>
+						</select>
+					</div>
+
+					<div class="actions">
+						<button id="afCancel" class="btn" type="button">Скасувати</button>
+						<button id="afSave" class="btn primary" type="button">Додати</button>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<script src="./renderer.js"></script>

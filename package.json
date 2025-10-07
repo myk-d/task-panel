@@ -1,6 +1,6 @@
 {
-	"name": "myslennya-tasks",
-	"version": "0.1.0",
+	"name": "msln-tasks",
+	"version": "0.2.0",
 	"author": "Mykola Dzoban",
 	"description": "Flyout task panel",
 	"main": "main.js",
@@ -12,6 +12,7 @@
 		"dev": "electronmon --trace-warnings ."
 	},
 	"build": {
+		"productName": "MSLN Tasks",
 		"appId": "com.myslennya.taskpanel",
 		"win": {
 			"target": "nsis",
