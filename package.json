@@ -2,6 +2,7 @@
 	"name": "msln-tasks",
 	"version": "0.2.0",
 	"author": "Mykola Dzoban",
+	"email": "myslennia@gmail.com",
 	"description": "Flyout task panel",
 	"main": "main.js",
 	"type": "module",
@@ -28,6 +29,17 @@
 			"extendInfo": {
 				"LSUIElement": true
 			}
+		},
+		"linux": {
+			"target": [
+				"AppImage",
+				"deb"
+			],
+			"category": "Utility",
+			"icon": "icon.png",
+			"maintainer": "Mykola Dzoban <myslennia@gmail.com>",
+			"synopsis": "Flyout task panel",
+			"description": "Lightweight flyout task panel with reminders, snooze, projects and JSON import/export."
 		}
 	},
 	"dependencies": {
