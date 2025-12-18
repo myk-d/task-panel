@@ -5,9 +5,15 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+// 1. Спочатку константи
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// 2. ПОТІМ функція
 const RES = (p) => path.join(__dirname, p);
+
+// 3. ТІЛЬКИ ПОТІМ використання функції
+const preloadPath = path.isAbsolute(RES('preload.cjs')) ? RES('preload.cjs') : path.join(app.getAppPath(), 'preload.cjs');
 
 const isMac = process.platform === 'darwin';
 
@@ -19,6 +25,9 @@ let tray;
 const tasksStore = new Store({ name: 'tasks' });
 const projectsStore = new Store({ name: 'projects' });
 app.setAppUserModelId('com.myslennya.taskpanel');
+
+// Вимикаємо пісочницю для стабільного запуску на Linux
+app.commandLine.appendSwitch('no-sandbox');
 
 if (!projectsStore.get('items')) projectsStore.set('items', ['personal', 'work']);
 
@@ -175,7 +184,7 @@ function createPanelWindow() {
 		backgroundColor: isMac ? '#00000000' : 'rgba(255,255,255,0)',
 		icon: nativeImage.createFromPath(RES('icon.png')),
 		webPreferences: {
-			preload: RES('preload.cjs'),
+			preload: preloadPath,
 			contextIsolation: true,
 			nodeIntegration: false,
 			sandbox: false,

@@ -1,6 +1,6 @@
 {
 	"name": "msln-tasks",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"author": "Mykola Dzoban",
 	"email": "myslennia@gmail.com",
 	"description": "Flyout task panel",
@@ -13,7 +13,7 @@
 		"dev": "electronmon --trace-warnings ."
 	},
 	"build": {
-		"productName": "MSLN Tasks",
+		"productName": "msln-tasks",
 		"appId": "com.myslennya.taskpanel",
 		"win": {
 			"target": "nsis",
@@ -37,10 +37,19 @@
 			],
 			"category": "Utility",
 			"icon": "icon.png",
+			"executableName": "msln-tasks",
 			"maintainer": "Mykola Dzoban <myslennia@gmail.com>",
 			"synopsis": "Flyout task panel",
 			"description": "Lightweight flyout task panel with reminders, snooze, projects and JSON import/export."
-		}
+		},
+		"files": [
+			"main.js",
+			"preload.cjs",
+			"renderer.js",
+			"index.html",
+			"index.css",
+			"icon.png"
+		]
 	},
 	"dependencies": {
 		"electron-store": "^9.0.0"
